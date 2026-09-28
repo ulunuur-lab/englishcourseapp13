@@ -828,6 +828,48 @@
       font-style: italic;
     }
 
+    .btn-speaker {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #818cf8;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-speaker:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.08);
+      box-shadow: 0 0 12px var(--primary-glow);
+    }
+    .btn-speaker-sm {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      color: #a5b4fc;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+    .btn-speaker-sm:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
     .card-controls {
       display: flex;
       align-items: center;
@@ -1170,12 +1212,18 @@
           <div class="flashcard" id="flashcard-el">
             <div class="flashcard-front">
               <span class="card-pos" id="fc-pos">fe'l</span>
-              <div class="card-word" id="fc-word">achieve</div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;">
+                <div class="card-word" id="fc-word" style="margin-bottom: 0;">achieve</div>
+                <button class="btn-speaker" onclick="event.stopPropagation(); speakText(document.getElementById('fc-word').textContent)" title="Talaffuzni eshitish">🔊</button>
+              </div>
               <span class="card-hint">🔄 O'zbekcha tarjimasini ko'rish uchun bosing</span>
             </div>
             <div class="flashcard-back">
               <div class="card-uz-trans" id="fc-uz">erishmoq</div>
-              <div class="card-ex-en" id="fc-ex-en">"She worked hard to achieve her goal."</div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 4px;">
+                <div class="card-ex-en" id="fc-ex-en" style="margin-bottom: 0;">"She worked hard to achieve her goal."</div>
+                <button class="btn-speaker-sm" onclick="event.stopPropagation(); speakText(document.getElementById('fc-ex-en').textContent)" title="Gapni eshitish">🔊</button>
+              </div>
               <div class="card-ex-uz" id="fc-ex-uz">U o'z maqsadiga erishish uchun qattiq ishladi.</div>
             </div>
           </div>
@@ -1231,7 +1279,7 @@
       <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
         Darslarni boshlash uchun ismingizni yozing.
       </p>
-      <input type="text" id="modal-name-input" class="input-clean" placeholder="Masalan: Malika" oninput="checkModalName(this.value)">
+      <input type="text" id="modal-name-input" class="input-clean" placeholder="Ismingizni kiriting..." oninput="checkModalName(this.value)">
       <div id="modal-hint" style="display: none; color: var(--amber); font-size: 12px; font-weight: 700; margin-bottom: 10px;">
         🛡️ Ulunur rejimi aniqlandi: Barcha darslar ochiq va Telegram xabarlari o'chiriladi.
       </div>
@@ -1283,7 +1331,7 @@
                   </div>
                 </div>
               </div>
-              <p style="font-size: 13.5px; color: #94a3b8;">Ustoz o'quvchidan so'raydi: <em>"Malika, what do you do? And what are you doing right now?"</em></p>
+              <p style="font-size: 13.5px; color: #94a3b8;">Ustoz o'quvchidan so'raydi: <em>"What do you do? And what are you doing right now?"</em></p>
             `
           },
           {
@@ -1379,7 +1427,7 @@
             title: "O'quvchi Bilan Jonli Mashq",
             html: `
               <p style="font-size: 14px; color: #94a3b8; margin-bottom: 12px;">
-                Malika, qaysi shakl to'g'ri? (O'quvchi javob bergach tugmani bosing)
+                Qaysi shakl to'g'ri? (O'quvchi javob bergach javobni tekshiring)
               </p>
               <div class="live-drill-item">
                 <div class="drill-question">1. Listen! Somebody ______ (sing) in the shower.</div>
@@ -1499,7 +1547,7 @@
         practice: [
           {
             q: "Listen! Somebody ______ (play) the piano in the other room.",
-            opts: ["plays", "is playing", "play", "are playing"],
+            opts: ["are playing", "is playing", "plays", "play"],
             ans: "is playing",
             expl: "To'g'ri! 'Listen!' so'zi ish-harakat ayni damda ro'y berayotganini ko'rsatadi (Present Continuous: 'is playing')."
           },
@@ -1511,37 +1559,37 @@
           },
           {
             q: "I ______ (not understand) this grammar rule right now.",
-            opts: ["am not understanding", "don't understand", "not understand", "doesn't understand"],
+            opts: ["am not understanding", "not understand", "doesn't understand", "don't understand"],
             ans: "don't understand",
             expl: "To'g'ri! 'understand' fe'li his-tuyg'u va aqliy faoliyat fe'li bo'lgani uchun hech qachon -ing olmaydi."
           },
           {
             q: "What ______ you usually ______ on Sundays?",
-            opts: ["do / do", "are / doing", "does / do", "is / doing"],
+            opts: ["is / doing", "do / do", "are / doing", "does / do"],
             ans: "do / do",
             expl: "To'g'ri! 'usually' (odatda) — Present Simple signal so'zi. 'What do you usually do?' to'g'ri savol shakli."
           },
           {
             q: "Look at Sarah! She ______ a beautiful red jacket today.",
-            opts: ["wears", "is wearing", "wear", "is wear"],
+            opts: ["wears", "is wear", "wear", "is wearing"],
             ans: "is wearing",
             expl: "To'g'ri! 'Look at Sarah!' va 'today' ayni kundagi vaqtinchalik holatni bildiradi (Present Continuous)."
           },
           {
             q: "Why ______ you ______ for your glasses? Are they lost?",
-            opts: ["are / looking", "do / look", "is / looking", "did / looked"],
+            opts: ["is / looking", "did / looked", "are / looking", "do / look"],
             ans: "are / looking",
             expl: "To'g'ri! Ayni damda qidirayotgani sababli: 'Why are you looking for...?' to'g'ri shakl."
           },
           {
             q: "I usually ______ tea, but today I ______ hot chocolate.",
-            opts: ["prefer / am drinking", "am preferring / drink", "prefer / drink", "am preferring / am drinking"],
+            opts: ["am preferring / am drinking", "prefer / drink", "am preferring / drink", "prefer / am drinking"],
             ans: "prefer / am drinking",
             expl: "To'g'ri! 'prefer' stative fe'l bo'lgani uchun hech qachon -ing olmaydi ('prefer'), lekin bugun ichayotgani 'am drinking'."
           },
           {
             q: "My brother ______ in a hospital. He is a doctor.",
-            opts: ["works", "is working", "work", "are working"],
+            opts: ["is working", "are working", "work", "works"],
             ans: "works",
             expl: "To'g'ri! Doimiy kasb va umumiy haqiqat uchun Present Simple ('works') ishlatiladi."
           }
@@ -1776,49 +1824,49 @@
         practice: [
           {
             q: "Where ______ you ______ on holiday last year?",
-            opts: ["did / go", "did / went", "were / go", "have / gone"],
+            opts: ["did / went", "have / gone", "did / go", "were / go"],
             ans: "did / go",
             expl: "To'g'ri! 'last year' — Past Simple. Savolda 'did' + V1 ('did you go') bo'ladi."
           },
           {
             q: "I was tired, so I ______ to the party.",
-            opts: ["didn't went", "didn't go", "wasn't go", "not went"],
+            opts: ["didn't go", "not went", "didn't went", "wasn't go"],
             ans: "didn't go",
             expl: "To'g'ri! 'didn't' dan keyin fe'l 1-shaklda keladi ('didn't go')."
           },
           {
             q: "______ the weather good when you were in Samarkand?",
-            opts: ["Was", "Did", "Were", "Is"],
+            opts: ["Is", "Were", "Was", "Did"],
             ans: "Was",
             expl: "To'g'ri! 'the weather' bilan fe'l yo'q, faqat sifat ('good') bor. Shuning uchun 'Was' ishlatiladi."
           },
           {
             q: "Yesterday I ______ my old friend at the cafe.",
-            opts: ["met", "meet", "was meet", "did met"],
+            opts: ["did met", "met", "meet", "was meet"],
             ans: "met",
             expl: "To'g'ri! 'meet' fe'lining o'tgan zamon shakli — 'met'."
           },
           {
             q: "We ______ to buy the tickets, so we couldn't enter the museum.",
-            opts: ["forgot", "forget", "didn't forgot", "was forget"],
+            opts: ["forgot", "was forget", "didn't forgot", "forget"],
             ans: "forgot",
             expl: "To'g'ri! 'forget' ning o'tgan shakli — 'forgot'."
           },
           {
             q: "Why ______ she ______ the party so early last night?",
-            opts: ["did / leave", "did / left", "was / leave", "does / leave"],
+            opts: ["did / leave", "did / left", "does / leave", "was / leave"],
             ans: "did / leave",
             expl: "To'g'ri! O'tgan zamon so'roq gapida: 'did' + ega + V1 ('leave') keladi."
           },
           {
             q: "______ you ______ your trip to Dubai last month?",
-            opts: ["Did / enjoy", "Did / enjoyed", "Were / enjoy", "Do / enjoy"],
+            opts: ["Were / enjoy", "Did / enjoy", "Did / enjoyed", "Do / enjoy"],
             ans: "Did / enjoy",
             expl: "To'g'ri! 'Did you enjoy...' to'g'ri shakl, chunki 'did' bor joyda 'enjoy' o'zgarmaydi."
           },
           {
             q: "They ______ late last night because of heavy traffic.",
-            opts: ["arrived", "arrive", "did arrived", "was arrived"],
+            opts: ["did arrived", "arrive", "arrived", "was arrived"],
             ans: "arrived",
             expl: "To'g'ri! To'g'ri fe'l (regular verb) ga -ed qo'shiladi: 'arrived'."
           }
@@ -1888,49 +1936,49 @@
         practice: [
           {
             q: "Where ______ your brother work?",
-            opts: ["does", "do", "is", "are"],
+            opts: ["do", "are", "is", "does"],
             ans: "does",
             expl: "To'g'ri! 'your brother' (he) uchun Present Simple savoli 'does' bilan yasaladi."
           },
           {
             q: "Look! It ______ outside right now.",
-            opts: ["is snowing", "snows", "snow", "are snowing"],
+            opts: ["are snowing", "is snowing", "snow", "snows"],
             ans: "is snowing",
             expl: "To'g'ri! 'Look!' va 'right now' ayni damda bo'layotgan ishni bildiradi (Present Continuous)."
           },
           {
             q: "We ______ to the cinema last night and ______ a great film.",
-            opts: ["went / saw", "go / see", "went / see", "did go / saw"],
+            opts: ["did go / saw", "go / see", "went / see", "went / saw"],
             ans: "went / saw",
             expl: "To'g'ri! 'last night' — o'tgan zamon. Ikkala fe'l ham Past Simple shaklida bo'ladi ('went' va 'saw')."
           },
           {
             q: "I ______ coffee right now, but I ______ tea usually.",
-            opts: ["am drinking / prefer", "drink / am preferring", "am drinking / am preferring", "drink / prefer"],
+            opts: ["am drinking / am preferring", "drink / prefer", "drink / am preferring", "am drinking / prefer"],
             ans: "am drinking / prefer",
             expl: "To'g'ri! 'am drinking' ayni damda, 'prefer' esa his-fikr (stative) fe'li bo'lgani uchun -ing olmaydi."
           },
           {
             q: "Why ______ you ______ (not call) me yesterday evening?",
-            opts: ["didn't / call", "didn't / called", "weren't / call", "don't / call"],
+            opts: ["weren't / call", "didn't / call", "don't / call", "didn't / called"],
             ans: "didn't / call",
             expl: "To'g'ri! O'tgan zamon inkor so'rog'i: 'didn't' + ega + V1 ('call') bo'ladi."
           },
           {
             q: "______ you tired after your long trip yesterday?",
-            opts: ["Were", "Did", "Was", "Are"],
+            opts: ["Were", "Are", "Did", "Was"],
             ans: "Were",
             expl: "To'g'ri! 'tired' (charchagan) bu sifat, fe'l emas! 'you' bilan 'Were' ishlatiladi."
           },
           {
             q: "She usually ______ casual clothes, but today she ______ a formal dress.",
-            opts: ["wears / is wearing", "is wearing / wears", "wears / wear", "wearing / is wearing"],
+            opts: ["wearing / is wearing", "wears / wear", "wears / is wearing", "is wearing / wears"],
             ans: "wears / is wearing",
             expl: "To'g'ri! 'usually' bilan Present Simple ('wears'), 'today' bilan Present Continuous ('is wearing')."
           },
           {
             q: "I lost my phone yesterday, but luckily I ______ it under the desk this morning.",
-            opts: ["found", "find", "was find", "did found"],
+            opts: ["did found", "found", "was find", "find"],
             ans: "found",
             expl: "To'g'ri! 'find' fe'lining o'tgan zamoni — 'found'."
           }
@@ -2198,6 +2246,26 @@
       } else {
         document.exitFullscreen();
       }
+    }
+
+    // AUDIO SPEAKER (Web Speech API)
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("Brauzeringiz audio talaffuzni qo'llab-quvvatlamaydi.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const clean = (text || '').replace(/["'«»]/g, '').trim();
+      if (!clean) return;
+      const utterance = new SpeechSynthesisUtterance(clean);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.85;
+      
+      const voices = window.speechSynthesis.getVoices();
+      const enVoice = voices.find(v => v.lang && v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('David') || v.name.includes('Zira') || v.name.includes('English')));
+      if (enVoice) utterance.voice = enVoice;
+      
+      window.speechSynthesis.speak(utterance);
     }
 
     // FLASHCARD LOGIC
